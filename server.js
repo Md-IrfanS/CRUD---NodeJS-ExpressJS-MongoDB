@@ -3,6 +3,7 @@ const express = require("express");
 const connectDB = require("./libs/db");
 const { PORT } = require("./libs/keys.js");
 const router = require("./routes/index.routes.js");
+const bodyParser = require("body-parser");
 const app = express();
 
 const port = PORT || 3000;
@@ -11,6 +12,8 @@ connectDB();
 // Middleware to parse JSON and URL-encoded data
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
 
 app.get("/", (req, res) => {
   res.send("Server Started");
